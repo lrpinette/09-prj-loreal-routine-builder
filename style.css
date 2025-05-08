@@ -11,11 +11,38 @@ body {
   color: #333;
   display: flex;
   justify-content: center;
+  direction: ltr; /* Default text direction is left-to-right */
 }
 
 .page-wrapper {
   width: 90%;
   max-width: 900px;
+  text-align: left; /* Default text alignment is left */
+}
+
+/* RTL-specific styles */
+body[dir="rtl"] {
+  direction: rtl; /* Switch to right-to-left */
+}
+
+body[dir="rtl"] .page-wrapper {
+  text-align: right; /* Align text to the right for RTL */
+}
+
+body[dir="rtl"] .products-grid {
+  flex-direction: row-reverse; /* Reverse the grid direction */
+}
+
+body[dir="rtl"] .product-card {
+  flex-direction: row-reverse; /* Reverse the card layout */
+}
+
+body[dir="rtl"] .chat-form {
+  flex-direction: row-reverse; /* Reverse input and button order */
+}
+
+body[dir="rtl"] .selected-product {
+  flex-direction: row-reverse; /* Reverse the layout of product name and remove button */
 }
 
 /* header */
@@ -113,7 +140,7 @@ body {
 
 .chat-form button {
   font-size: 18px;
-  background: #000;
+  background: #ff003b; /* Updated to L'Oréal's signature red */
   color: #fff;
   border: none;
   padding: 12px;
@@ -127,7 +154,7 @@ body {
 }
 
 .chat-form button:hover {
-  background: #666666;
+  background: #cc0030; /* Slightly darker red for hover effect */
 }
 
 .chat-form button:focus {
@@ -186,6 +213,8 @@ body {
   display: flex;
   gap: 15px;
   min-height: 160px;
+  position: relative;
+  overflow: hidden;
 }
 
 .product-card img {
@@ -213,6 +242,37 @@ body {
   color: #666;
 }
 
+/* Highlight selected product cards */
+.product-card.selected {
+  border: 2px solid #000;
+  background-color: #f0f0f0;
+}
+
+/* Product card hover overlay */
+.product-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85); /* Darker background for better contrast */
+  color: #fff; /* Ensure text is white for readability */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 16px; /* Slightly larger font for better readability */
+  line-height: 1.5; /* Improve line spacing for readability */
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
 /* selected products */
 .selected-products {
   margin: 40px 0;
@@ -232,6 +292,31 @@ body {
   gap: 10px;
 }
 
+/* Selected products section */
+.selected-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+
+.selected-product button {
+  background: #ff003b; /* Updated to L'Oréal's signature red */
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.selected-product button:hover {
+  background: #cc0030; /* Slightly darker red for hover effect */
+}
+
 .generate-btn {
   width: 100%;
   margin-top: 20px;
@@ -239,7 +324,7 @@ body {
   font-size: 18px;
   font-weight: 500;
   color: #fff;
-  background: #000;
+  background: #ff003b; /* Updated to L'Oréal's signature red */
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -247,9 +332,27 @@ body {
 }
 
 .generate-btn:hover {
-  background: #666;
+  background: #cc0030; /* Slightly darker red for hover effect */
 }
 
 .generate-btn i {
   margin-right: 8px;
+}
+
+/* Clear All button */
+.clear-btn {
+  margin-top: 20px;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background: #ff003b; /* L'Oréal's signature red */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.clear-btn:hover {
+  background: #cc0030; /* Slightly darker red for hover effect */
 }
